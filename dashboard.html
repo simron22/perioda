@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Perioda - Cycle Dashboard</title>
+    <meta name="description" content="Track your menstrual cycle, mood, symptoms, and health with Perioda's personal dashboard.">
+
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         TOP BAR
+    ========================== -->
+
+    <header class="topbar">
+
+        <div class="topbar-brand">
+            <div class="brand-dot"></div>
+            <span class="brand-name">perioda</span>
+        </div>
+
+        <div class="topbar-right">
+
+            <span class="topbar-greeting">
+                <img id="topbarAvatar" src="images/default-avatar.svg" alt="Profile" class="avatar-sm" style="display:inline-block; width: 32px; height: 32px; border-radius: 50%; object-fit: cover; margin-right: 10px; vertical-align: middle;">
+                Hello, <strong id="userName">there</strong>
+            </span>
+
+            <button class="logout-btn" id="logoutBtn">
+                <span class="logout-icon">⏻</span>
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         APP LAYOUT
+    ========================== -->
+
+    <div class="app-layout">
+
+        <!-- =========================
+             SIDEBAR
+        ========================== -->
+
+        <nav class="sidebar" id="sidebar">
+
+            <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+
+            <ul class="sidebar-nav">
+
+                <li>
+                    <button class="nav-item active" data-section="dashboard">
+                        <span class="nav-icon">🏠</span>
+                        <span class="nav-label">Dashboard</span>
+                    </button>
+                </li>
+
+                <li>
+                    <button class="nav-item" data-section="calendar">
+                        <span class="nav-icon">📅</span>
+                        <span class="nav-label">Calendar</span>
+                    </button>
+                </li>
+
+                <li>
+                    <button class="nav-item" data-section="mood">
+                        <span class="nav-icon">😊</span>
+                        <span class="nav-label">Mood Board</span>
+                    </button>
+                </li>
+
+                <li>
+                    <button class="nav-item" data-section="symptoms">
+                        <span class="nav-icon">🩺</span>
+                        <span class="nav-label">Symptoms</span>
+                    </button>
+                </li>
+
+                <li>
+                    <button class="nav-item" data-section="tips">
+                        <span class="nav-icon">💡</span>
+                        <span class="nav-label">Health Tips</span>
+                    </button>
+                </li>
+
+                <li>
+                    <button class="nav-item" data-section="notes">
+                        <span class="nav-icon">📝</span>
+                        <span class="nav-label">Notes</span>
+                    </button>
+                </li>
+
+                <li>
+                    <button class="nav-item" data-section="settings">
+                        <span class="nav-icon">⚙️</span>
+                        <span class="nav-label">Settings</span>
+                    </button>
+                </li>
+
+            </ul>
+
+        </nav>
+
+
+        <!-- =========================
+             MAIN CONTENT
+        ========================== -->
+
+        <main class="main-content">
+
+
+            <!-- =====================
+                 DASHBOARD SECTION
+            ====================== -->
+
+            <section class="section-panel active" id="section-dashboard">
+
+                <div class="section-header">
+                    <h1>Dashboard</h1>
+                    <p>Your cycle overview at a glance</p>
+                </div>
+
+                <!-- Cycle Summary -->
+                <div class="card dash-summary-card">
+                    <div class="dash-greeting">
+                        <h2>Welcome back, <span id="dashName">there</span> 👋</h2>
+                        <p id="dashCycleInfo">Log your period to start tracking your cycle.</p>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="dash-stats">
+                    <div class="stat-card">
+                        <span class="stat-icon">📅</span>
+                        <div class="stat-info">
+                            <strong id="statCycleLength">28</strong>
+                            <span>Cycle Length</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">🩸</span>
+                        <div class="stat-info">
+                            <strong id="statPeriodDuration">5</strong>
+                            <span>Period Duration</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">🌸</span>
+                        <div class="stat-info">
+                            <strong id="statOvulationDate">—</strong>
+                            <span>Est. Ovulation</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">😊</span>
+                        <div class="stat-info">
+                            <strong id="statMoodCount">0</strong>
+                            <span>Moods Logged</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">🩺</span>
+                        <div class="stat-info">
+                            <strong id="statSymptomCount">0</strong>
+                            <span>Symptoms Logged</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="card">
+                    <h3>Recent Activity</h3>
+                    <div class="history-list" id="dashRecentActivity">
+                        <p class="empty-state">No activity yet. Start logging your moods, symptoms, and periods!</p>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="card">
+                    <h3>Quick Actions</h3>
+                    <div class="quick-actions">
+                        <button class="quick-action-btn" data-goto="calendar">
+                            <span>📅</span> Log Period
+                        </button>
+                        <button class="quick-action-btn" data-goto="mood">
+                            <span>😊</span> Log Mood
+                        </button>
+                        <button class="quick-action-btn" data-goto="symptoms">
+                            <span>🩺</span> Log Symptom
+                        </button>
+                        <button class="quick-action-btn" data-goto="notes">
+                            <span>📝</span> Add Note
+                        </button>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- =====================
+                 CALENDAR SECTION
+            ====================== -->
+
+            <section class="section-panel" id="section-calendar">
+
+                <div class="section-header">
+                    <h1>Cycle Calendar</h1>
+                    <p>Track your periods and view previous cycle dates</p>
+                </div>
+
+                <!-- Calendar Controls -->
+                <div class="calendar-controls">
+                    <button class="cal-nav" id="prevMonth">‹</button>
+                    <h2 id="calendarMonth">August 2026</h2>
+                    <button class="cal-nav" id="nextMonth">›</button>
+                </div>
+
+                <!-- Calendar Grid -->
+                <div class="calendar-wrapper">
+
+                    <div class="calendar-weekdays">
+                        <span>Sun</span><span>Mon</span><span>Tue</span>
+                        <span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                    </div>
+
+                    <div class="calendar-grid" id="calendarGrid">
+                        <!-- Days injected by JS -->
+                    </div>
+
+                </div>
+
+                <!-- Calendar Legend -->
+                <div class="cal-legend">
+                    <div class="legend-item">
+                        <span class="legend-swatch period-swatch"></span>
+                        Period days
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-swatch today-swatch"></span>
+                        Today
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-swatch predicted-swatch"></span>
+                        Predicted
+                    </div>
+                </div>
+
+                <!-- Log Period -->
+                <div class="card log-period-card">
+                    <h3>Log Period</h3>
+                    <div class="period-form">
+                        <div class="field">
+                            <label for="periodStart">Start Date</label>
+                            <input type="date" id="periodStart">
+                        </div>
+                        <div class="field">
+                            <label for="periodEnd">End Date</label>
+                            <input type="date" id="periodEnd">
+                        </div>
+                        <button class="btn-primary" id="savePeriod">Save Period</button>
+                    </div>
+                </div>
+
+                <!-- Previous Cycles -->
+                <div class="card">
+                    <h3>Previous Cycles</h3>
+                    <div class="cycle-history" id="cycleHistory">
+                        <p class="empty-state">No cycles logged yet.</p>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- =====================
+                 MOOD BOARD SECTION
+            ====================== -->
+
+            <section class="section-panel" id="section-mood">
+
+                <div class="section-header">
+                    <h1>Mood Board</h1>
+                    <p>How are you feeling today?</p>
+                </div>
+
+                <!-- Mood Picker -->
+                <div class="card">
+                    <h3>Log Today's Mood</h3>
+                    <div class="mood-picker" id="moodPicker">
+                        <button class="mood-btn" data-mood="happy">
+                            <span class="mood-emoji">😊</span>
+                            <span>Happy</span>
+                        </button>
+                        <button class="mood-btn" data-mood="calm">
+                            <span class="mood-emoji">😌</span>
+                            <span>Calm</span>
+                        </button>
+                        <button class="mood-btn" data-mood="energetic">
+                            <span class="mood-emoji">⚡</span>
+                            <span>Energetic</span>
+                        </button>
+                        <button class="mood-btn" data-mood="sad">
+                            <span class="mood-emoji">😢</span>
+                            <span>Sad</span>
+                        </button>
+                        <button class="mood-btn" data-mood="anxious">
+                            <span class="mood-emoji">😰</span>
+                            <span>Anxious</span>
+                        </button>
+                        <button class="mood-btn" data-mood="irritable">
+                            <span class="mood-emoji">😤</span>
+                            <span>Irritable</span>
+                        </button>
+                        <button class="mood-btn" data-mood="tired">
+                            <span class="mood-emoji">😴</span>
+                            <span>Tired</span>
+                        </button>
+                        <button class="mood-btn" data-mood="loved">
+                            <span class="mood-emoji">🥰</span>
+                            <span>Loved</span>
+                        </button>
+                    </div>
+
+                    <div class="intensity-row" id="moodIntensityRow" style="display:none;">
+                        <label>Intensity:</label>
+                        <div class="intensity-dots">
+                            <button class="intensity-dot" data-val="1">1</button>
+                            <button class="intensity-dot" data-val="2">2</button>
+                            <button class="intensity-dot active" data-val="3">3</button>
+                            <button class="intensity-dot" data-val="4">4</button>
+                            <button class="intensity-dot" data-val="5">5</button>
+                        </div>
+                        <button class="btn-primary" id="saveMood">Save Mood</button>
+                    </div>
+                </div>
+
+                <!-- Mood History -->
+                <div class="card">
+                    <h3>Mood History</h3>
+                    <div class="history-list" id="moodHistory">
+                        <p class="empty-state">No moods logged yet.</p>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- =====================
+                 SYMPTOMS SECTION
+            ====================== -->
+
+            <section class="section-panel" id="section-symptoms">
+
+                <div class="section-header">
+                    <h1>Symptom Board</h1>
+                    <p>Track your symptoms throughout your cycle</p>
+                </div>
+
+                <!-- Symptom Picker -->
+                <div class="card">
+                    <h3>Log Symptom</h3>
+                    <div class="symptom-picker" id="symptomPicker">
+                        <button class="symptom-btn" data-symptom="cramps">
+                            <span class="symptom-icon">🤕</span>
+                            <span>Cramps</span>
+                        </button>
+                        <button class="symptom-btn" data-symptom="headache">
+                            <span class="symptom-icon">🤯</span>
+                            <span>Headache</span>
+                        </button>
+                        <button class="symptom-btn" data-symptom="bloating">
+                            <span class="symptom-icon">🫧</span>
+                            <span>Bloating</span>
+                        </button>
+                        <button class="symptom-btn" data-symptom="fatigue">
+                            <span class="symptom-icon">😩</span>
+                            <span>Fatigue</span>
+                        </button>
+                        <button class="symptom-btn" data-symptom="acne">
+                            <span class="symptom-icon">😣</span>
+                            <span>Acne</span>
+                        </button>
+                        <button class="symptom-btn" data-symptom="back pain">
+                            <span class="symptom-icon">🔙</span>
+                            <span>Back Pain</span>
+                        </button>
+                        <button class="symptom-btn" data-symptom="nausea">
+                            <span class="symptom-icon">🤢</span>
+                            <span>Nausea</span>
+                        </button>
+                        <button class="symptom-btn" data-symptom="breast tenderness">
+                            <span class="symptom-icon">💗</span>
+                            <span>Tenderness</span>
+                        </button>
+                    </div>
+
+                    <div class="severity-row" id="severityRow" style="display:none;">
+                        <label>Severity:</label>
+                        <div class="severity-options">
+                            <button class="severity-btn active" data-severity="mild">Mild</button>
+                            <button class="severity-btn" data-severity="moderate">Moderate</button>
+                            <button class="severity-btn" data-severity="severe">Severe</button>
+                        </div>
+                        <button class="btn-primary" id="saveSymptom">Save Symptom</button>
+                    </div>
+                </div>
+
+                <!-- Symptom History -->
+                <div class="card">
+                    <h3>Symptom History</h3>
+                    <div class="history-list" id="symptomHistory">
+                        <p class="empty-state">No symptoms logged yet.</p>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- =====================
+                 HEALTH TIPS SECTION
+            ====================== -->
+
+            <section class="section-panel" id="section-tips">
+
+                <div class="section-header">
+                    <h1>Perioda Health Advisor</h1>
+                    <p>Search your symptoms to learn about possible period-related conditions.</p>
+                </div>
+
+                <div class="card empty-state">
+                    <h3>Try our new Symptom Advisor!</h3>
+                    <p>Go to the <strong>Health Tips</strong> page from the main PHP dashboard to search your symptoms and get personalized health information.</p>
+                </div>
+
+            </section>
+
+
+            <!-- =====================
+                 NOTES SECTION
+            ====================== -->
+
+            <section class="section-panel" id="section-notes">
+
+                <div class="section-header">
+                    <h1>My Notes</h1>
+                    <p>Keep personal notes about your health and cycle</p>
+                </div>
+
+                <!-- Add Note -->
+                <div class="card">
+                    <h3>New Note</h3>
+                    <div class="note-form">
+                        <div class="field">
+                            <label for="noteTitle">Title</label>
+                            <input type="text" id="noteTitle" placeholder="Note title...">
+                        </div>
+                        <div class="field">
+                            <label for="noteContent">Content</label>
+                            <textarea id="noteContent" rows="4" placeholder="Write your note here..."></textarea>
+                        </div>
+                        <button class="btn-primary" id="saveNote">Save Note</button>
+                    </div>
+                </div>
+
+                <!-- Notes List -->
+                <div class="card">
+                    <h3>Saved Notes</h3>
+                    <div class="notes-list" id="notesList">
+                        <p class="empty-state">No notes yet.</p>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- =====================
+                 SETTINGS SECTION
+            ====================== -->
+
+            <section class="section-panel" id="section-settings">
+
+                <div class="section-header">
+                    <h1>Settings</h1>
+                    <p>Customize your cycle tracking preferences</p>
+                </div>
+
+                <div class="card">
+                    <h3>Cycle Preferences</h3>
+                    <div class="settings-form">
+                        <div class="field">
+                            <label for="cycleLength">Average Cycle Length (days)</label>
+                            <input type="number" id="cycleLength" value="28" min="20" max="45">
+                            <small>Typically 21–35 days. Default is 28.</small>
+                        </div>
+                        <div class="field">
+                            <label for="periodDuration">Average Period Duration (days)</label>
+                            <input type="number" id="periodDuration" value="5" min="2" max="10">
+                            <small>Typically 3–7 days. Default is 5.</small>
+                        </div>
+                        <button class="btn-primary" id="saveSettings">Save Settings</button>
+                        <p class="settings-status" id="settingsStatus"></p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Account Info</h3>
+                    <div class="account-info" id="accountInfo">
+                        
+                        <div class="profile-photo-container" style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                            <img id="profilePreview" src="images/default-avatar.svg" alt="Profile Photo" class="avatar-lg" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #ff4081;">
+                            <div>
+                                <label for="profilePhotoInput" class="btn-secondary" style="cursor: pointer; display: inline-block; padding: 6px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px;">Change Photo</label>
+                                <input type="file" id="profilePhotoInput" accept="image/png, image/jpeg, image/jpg" style="display: none;">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="settingsName">Full Name</label>
+                            <input type="text" id="settingsName">
+                        </div>
+                        <div class="field">
+                            <label for="settingsEmail">Email</label>
+                            <input type="email" id="settingsEmail">
+                        </div>
+                        <div class="field">
+                            <label for="settingsPhone">Phone</label>
+                            <input type="text" id="settingsPhone">
+                        </div>
+                        
+                        <div class="info-row" style="margin-top: 15px;">
+                            <span>Member since: </span>
+                            <strong id="settingsJoined">—</strong>
+                        </div>
+
+                        <button class="btn-primary" id="updateProfileBtn" style="margin-top: 15px;">Update Profile</button>
+                    </div>
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+    <script src="dashboard.js"></script>
+
+</body>
+
+</html>

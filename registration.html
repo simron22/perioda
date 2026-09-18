@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Perioda - Create Account</title>
+
+    <link rel="stylesheet" href="registration.css">
+</head>
+
+<body>
+
+    <div class="registration-container">
+
+        <div class="registration-card">
+
+            <div class="logo">
+                <span class="logo-dot"></span>
+                <span>perioda</span>
+            </div>
+
+            <h1>Create your account</h1>
+
+            <p class="subtitle">
+                Start tracking your cycle with Perioda.
+            </p>
+
+            <form id="registrationForm" novalidate>
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name*
+                    </label>
+
+                    <input type="text" id="name" placeholder="Enter your full name" autocomplete="name" required>
+
+                    <small id="nameError" class="error-message"></small>
+
+                </div>
+
+
+                <!-- AGE -->
+
+                <div class="form-group">
+
+                    <label for="age">
+                        Age*
+                    </label>
+
+                    <input type="number" id="age" placeholder="Enter your age" min="13" max="100" required>
+
+                    <small id="ageError" class="error-message"></small>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email*
+                    </label>
+
+                    <input type="email" id="email" placeholder="example@gmail.com" autocomplete="email" required>
+
+                    <small id="emailError" class="error-message"></small>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password*
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input type="password" id="password" placeholder="Create a strong password"
+                            autocomplete="new-password" required>
+
+                        <button type="button" id="togglePassword">
+                            Show
+                        </button>
+
+                    </div>
+
+                    <small id="passwordError" class="error-message"></small>
+
+                    <p class="password-hint">
+                        Password must contain at least 8 characters,
+                        one uppercase letter, one lowercase letter,
+                        one number, and one special character.
+                    </p>
+
+                </div>
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password*
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input type="password" id="confirmPassword" placeholder="Re-enter your password"
+                            autocomplete="new-password" required>
+
+                        <button type="button" id="toggleConfirmPassword">
+                            Show
+                        </button>
+
+                    </div>
+
+                    <small id="confirmPasswordError" class="error-message"></small>
+
+                </div>
+
+
+                <small id="formError" class="error-message"></small>
+
+                <button type="submit" class="register-btn">
+                    Create Account
+                </button>
+
+            </form>
+
+
+            <p class="login-text">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Log in
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script src="registration.js"></script>
+
+
+</body>
+
+</html>

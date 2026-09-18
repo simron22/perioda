@@ -1,0 +1,281 @@
+/* =========================================
+   PERIODA REGISTRATION
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fff7fa;
+    color: #4a1830;
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   CONTAINER
+   ========================================= */
+
+.registration-container {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+}
+
+
+/* =========================================
+   CARD
+   ========================================= */
+
+.registration-card {
+    width: 100%;
+    max-width: 470px;
+
+    background: #ffffff;
+
+    padding: 42px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 15px 45px rgba(120, 20, 60, 0.10);
+}
+
+
+/* =========================================
+   LOGO
+   ========================================= */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #7d1744;
+
+    font-size: 25px;
+    font-weight: 700;
+
+    margin-bottom: 30px;
+}
+
+.logo-dot {
+    width: 15px;
+    height: 15px;
+
+    border-radius: 50%;
+
+    background: #b52b68;
+}
+
+
+/* =========================================
+   HEADING
+   ========================================= */
+
+.registration-card h1 {
+    color: #4a1830;
+
+    font-size: 32px;
+
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #8b6878;
+
+    font-size: 15px;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================
+   FORM
+   ========================================= */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+
+    color: #890a4f;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+
+.form-group input {
+    width: 100%;
+
+    padding: 14px 15px;
+
+    border: 1px solid #e4cbd6;
+
+    border-radius: 10px;
+
+    background: #fffafb;
+
+    color: #4a1830;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+
+.form-group input:focus {
+    border-color: #a9275e;
+
+    box-shadow:
+        0 0 0 3px rgba(169, 39, 94, 0.10);
+}
+
+
+.form-group input::placeholder {
+    color: #bdafaf;
+}
+
+
+/* =========================================
+   PASSWORD
+   ========================================= */
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 70px;
+}
+
+.password-wrapper button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #8e1d4f;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.password-hint {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #8b6878;
+    line-height: 1.4;
+}
+
+
+/* =========================================
+   REGISTER BUTTON
+   ========================================= */
+
+.register-btn {
+    width: 100%;
+
+    border: none;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    background: #8e1d4f;
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.register-btn:hover {
+    background: #74163f;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   LOGIN LINK
+   ========================================= */
+
+.login-text {
+    text-align: center;
+
+    margin-top: 24px;
+
+    color: #8b6878;
+
+    font-size: 14px;
+}
+
+.login-text a {
+    color: #8e1d4f;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.login-text a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 520px) {
+
+    .registration-container {
+        padding: 18px;
+    }
+
+    .registration-card {
+        padding: 28px 22px;
+    }
+
+    .registration-card h1 {
+        font-size: 27px;
+    }
+
+}
+
+/* =========================================
+   ERROR MESSAGES
+   ========================================= */
+
+.error-message {
+    color: #d32f2f;
+    font-size: 13px;
+    margin-top: 5px;
+    display: block;
+    font-weight: 500;
+}
+
+.input-error {
+    border-color: #d32f2f !important;
+}
