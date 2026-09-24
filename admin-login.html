@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Perioda — Admin Login</title>
+
+    <meta name="description" content="Perioda admin login — secure access to the administration panel.">
+
+    <link rel="stylesheet" href="login.css">
+
+    <style>
+        /* Admin login extras */
+
+        .admin-badge {
+            display: inline-block;
+            background: #f4d9e2;
+            color: #8e1d4f;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 22px;
+        }
+
+        .login-card h1 {
+            font-size: 28px;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: #8b6878;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #8e1d4f;
+        }
+
+        .back-link svg {
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+
+        .success-message {
+            color: #2f9e44;
+            font-size: 13px;
+            margin-top: 5px;
+            display: block;
+            font-weight: 500;
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #8e1d4f, #b52b68);
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(135deg, #74163f, #8e1d4f);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="login-container">
+
+        <div class="login-card">
+
+
+            <!-- Logo -->
+
+            <div class="logo">
+
+                <span class="logo-dot"></span>
+
+                <span>perioda</span>
+
+            </div>
+
+
+            <!-- Admin badge -->
+
+            <span class="admin-badge">Admin Panel</span>
+
+
+            <h1>
+                Admin Sign In
+            </h1>
+
+
+            <p class="subtitle">
+                Enter your admin credentials to access the dashboard.
+            </p>
+
+
+            <form id="adminLoginForm" novalidate>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="adminEmail">
+                        Email
+                    </label>
+
+                    <input type="email" id="adminEmail" placeholder="admin@kathford.edu.np" required
+                        autocomplete="email">
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="adminPassword">
+                        Password
+                    </label>
+
+
+                    <div class="password-wrapper">
+
+                        <input type="password" id="adminPassword" placeholder="Enter your password" required
+                            autocomplete="current-password">
+
+                        <button type="button" id="togglePassword">
+                            Show
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <button type="submit" class="login-btn" id="loginBtn">
+                    Log In
+                </button>
+
+                <small id="errorMessage" class="error-message"></small>
+                <small id="successMessage" class="success-message"></small>
+
+            </form>
+
+
+            <a href="index.html" class="back-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6" />
+                </svg>
+                Back to landing page
+            </a>
+
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* =========================
+           ELEMENTS
+        ========================== */
+
+        var form = document.getElementById("adminLoginForm");
+        var emailInput = document.getElementById("adminEmail");
+        var passInput = document.getElementById("adminPassword");
+        var toggleBtn = document.getElementById("togglePassword");
+        var errorEl = document.getElementById("errorMessage");
+        var successEl = document.getElementById("successMessage");
+        var loginBtn = document.getElementById("loginBtn");
+
+
+        /* =========================
+           SHOW / HIDE PASSWORD
+        ========================== */
+
+        if (toggleBtn) {
+            toggleBtn.addEventListener("click", function () {
+                if (passInput.type === "password") {
+                    passInput.type = "text";
+                    toggleBtn.textContent = "Hide";
+                } else {
+                    passInput.type = "password";
+                    toggleBtn.textContent = "Show";
+                }
+            });
+        }
+
+
+        /* =========================
+           CHECK IF ALREADY LOGGED IN
+        ========================== */
+
+        var adminData = localStorage.getItem("periodaAdmin");
+        if (adminData) {
+            window.location.href = "admin-dashboard.html";
+        }
+
+
+        /* =========================
+           LOGIN SUBMIT
+        ========================== */
+
+        form.addEventListener("submit", function (e) {
+
+            e.preventDefault();
+
+            errorEl.textContent = "";
+            successEl.textContent = "";
+
+            var email = emailInput.value.trim();
+            var password = passInput.value;
+
+            if (!email || !password) {
+                errorEl.textContent = "Please enter both email and password.";
+                return;
+            }
+
+            /* Disable button */
+            loginBtn.disabled = true;
+            loginBtn.textContent = "Signing in…";
+
+
+            fetch("admin-login-handler.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            })
+                .then(function (r) { return r.json(); })
+                .then(function (data) {
+
+                    if (data.error) {
+
+                        errorEl.textContent = data.error;
+                        loginBtn.disabled = false;
+                        loginBtn.textContent = "Log In";
+
+                    } else if (data.success) {
+
+                        /* Store admin session in localStorage */
+                        localStorage.setItem("periodaAdmin", JSON.stringify(data.admin));
+
+                        successEl.textContent = "Login successful! Redirecting…";
+
+                        setTimeout(function () {
+                            window.location.href = "admin-dashboard.html";
+                        }, 600);
+
+                    }
+
+                })
+                .catch(function () {
+                    errorEl.textContent = "Unable to connect to server. Make sure XAMPP is running.";
+                    loginBtn.disabled = false;
+                    loginBtn.textContent = "Log In";
+                });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

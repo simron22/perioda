@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Perioda - Create Account</title>
+
+    <link rel="stylesheet" href="registration.css">
+</head>
+
+<body>
+
+    <div class="registration-container">
+
+        <div class="registration-card">
+
+            <div class="logo">
+                <span class="logo-dot"></span>
+                <span>perioda</span>
+            </div>
+
+            <h1>Create your account</h1>
+
+            <p class="subtitle">
+                Start tracking your cycle with Perioda.
+            </p>
+
+            <form id="registrationForm" novalidate>
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name*
+                    </label>
+
+                    <input type="text" id="name" placeholder="Enter your full name" autocomplete="name" required>
+
+                    <small id="nameError" class="error-message"></small>
+
+                </div>
+
+
+                <!-- DATE OF BIRTH -->
+
+                <div class="form-group">
+
+                    <label for="dob">
+                        Date of Birth*
+                    </label>
+
+                    <input type="date" id="dob" required>
+
+                    <small id="dobError" class="error-message"></small>
+
+                </div>
+
+                <!-- PHONE NUMBER -->
+                <div class="form-group">
+                    <label for="phone">
+                        Phone Number*
+                    </label>
+                    <input type="tel" id="phone" placeholder="+97798XXXXXXXX" autocomplete="tel" required>
+                    <small id="phoneError" class="error-message"></small>
+                </div>
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email*
+                    </label>
+
+                    <input type="email" id="email" placeholder="example@gmail.com" autocomplete="email" required>
+
+                    <small id="emailError" class="error-message"></small>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password*
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input type="password" id="password" placeholder="Create a strong password"
+                            autocomplete="new-password" required>
+
+                        <button type="button" id="togglePassword">
+                            Show
+                        </button>
+
+                    </div>
+
+                    <small id="passwordError" class="error-message"></small>
+
+                    <p class="password-hint">
+                        Password must contain at least 8 characters,
+                        one uppercase letter, one lowercase letter,
+                        one number, and one special character.
+                    </p>
+
+                </div>
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password*
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input type="password" id="confirmPassword" placeholder="Re-enter your password"
+                            autocomplete="new-password" required>
+
+                        <button type="button" id="toggleConfirmPassword">
+                            Show
+                        </button>
+
+                    </div>
+
+                    <small id="confirmPasswordError" class="error-message"></small>
+
+                </div>
+
+
+
+                <small id="formError" class="error-message"></small>
+
+                <button type="submit" class="register-btn">
+                    Create Account
+                </button>
+
+            </form>
+
+
+            <p class="login-text">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Log in
+                </a>
+
+            </p>
+
+            <a href="index.html" class="back-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6" />
+                </svg>
+                Back to landing page
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <script src="registration.js?v=3"></script>
+
+
+</body>
+
+</html>
